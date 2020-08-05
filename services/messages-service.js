@@ -1,6 +1,6 @@
 const { messagesModel } = require('../models');
 const emailService = require('./email-service');
-const { SMTP_USER, CLIENT_ORIGIN, AUTH_HOST, PORT } = require('../config');
+const { SMTP_USER, CLIENT_ORIGIN, AUTH_HOST, AUTH_PORT } = require('../config');
 const axios = require('axios');
 const queryString = require('query-string');
 const os = require("os");
@@ -66,7 +66,7 @@ async function sendMessage (message, sender) {
 }
 
 async function getUsers ({ ids, emails }) {
-  const userServiceUrl = `http://${AUTH_HOST}:${PORT}/auth/users`;
+  const userServiceUrl = `http://${AUTH_HOST}:${AUTH_PORT}/auth/users`;
   const usersFilterObj = ids ? { ids } : { emails };
   const params = queryString.stringify(usersFilterObj, { arrayFormat: 'bracket' });
   const targetUrl = `${userServiceUrl}?${params}`;
