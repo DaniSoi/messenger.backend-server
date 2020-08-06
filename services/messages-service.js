@@ -103,7 +103,7 @@ function composeMessageDocument (sender, receivers, messageContent) {
 
 async function sendNewMessageNotificationEmail (sender, receiver, messageId) {
   try {
-    const messageUrl = `${CLIENT_URL}/message/${messageId}`;
+    const messageUrl = `http://${CLIENT_URL || 'localhost:3000'}/message/${messageId}`;
     const emailTemplate = {
       from: SMTP_USER,
       to: receiver.email,
