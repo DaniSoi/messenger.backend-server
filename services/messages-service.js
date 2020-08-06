@@ -1,6 +1,6 @@
 const { messagesModel } = require('../models');
 const emailService = require('./email-service');
-const { SMTP_USER, CLIENT_ORIGIN, AUTH_HOST, AUTH_PORT } = require('../config');
+const { SMTP_USER, CLIENT_URL, AUTH_HOST, AUTH_PORT } = require('../config');
 const axios = require('axios');
 const queryString = require('query-string');
 const os = require("os");
@@ -103,7 +103,7 @@ function composeMessageDocument (sender, receivers, messageContent) {
 
 async function sendNewMessageNotificationEmail (sender, receiver, messageId) {
   try {
-    const messageUrl = `${CLIENT_ORIGIN}/message/${messageId}`;
+    const messageUrl = `${CLIENT_URL}/message/${messageId}`;
     const emailTemplate = {
       from: SMTP_USER,
       to: receiver.email,
